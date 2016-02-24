@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>GIFS!</title>
+  <style>
+  .gif { display: block; padding: 10px; }
+  </style>
+</head>
+<body><center><h1>GIFS!</h1>
+  <textarea id="json" rows="10" cols="80">
+[
+  "https://media3.giphy.com/media/xT0BKtgZQfFRB8pegg/200w.gif",
+  "https://media2.giphy.com/media/r63gvu0KT6K7m/200w.gif",
+  "https://media1.giphy.com/media/B9rldJ7drZINa/200w.gif"
+]
+  </textarea>
+  <div id="error"></div>
+  <div id="gifspace">
+
+  </div>
+  <script>
+  function update() {
+    $('#error').text("");
+    $('#gifspace').empty();
+    try {
+      var urls = JSON.parse($('#json').val());
+      for (var i = 0; i < urls.length; i++) {
+        $('#gifspace').append('<img class="gif" src="' + urls[i] + '">');
+      }
+    } catch (e) {
+      $('#error').text("" + e);
+    }
+  }
+  $('#json').change(function() {
+    update();
+  });
+  update();
+  </script>
+  </center></body>
+</html>
